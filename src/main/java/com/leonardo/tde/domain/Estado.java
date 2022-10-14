@@ -13,7 +13,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import lombok.Data;
+
 // Estado - Tabela ESTADO
+@Data
 @Entity(name = "Estado")
 @Table(name = "ESTADO")
 public class Estado {
@@ -35,38 +38,4 @@ public class Estado {
     // Cidades - Chave Estrangeira - Cidade - Não Nulo
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Cidade> cidades;
-
-    // Getters e Setters
-    // ID
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    // Nome
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    // Cidades
-    public List<Cidade> getCidades() {
-        return cidades;
-    }
-
-    public void setCidades(List<Cidade> cidades) {
-        this.cidades = cidades;
-    }
-
-    // To String
-    @Override
-    public String toString() {
-        return "Estado [id=" + id + ", nome=" + nome + ", cidades=" + cidades + "]";
-    }
 }

@@ -12,7 +12,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import lombok.Data;
+
 // Cidade - Tabela CIDADE
+@Data
 @Entity(name = "Cidade")
 @Table(name = "CIDADE")
 public class Cidade {
@@ -35,38 +38,4 @@ public class Cidade {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ESTADO_FK", referencedColumnName = "ID_ESTADO_PK", nullable = false)
     private Estado estado;
-
-    // Getters e Setters
-    // ID
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    // Nome
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    // Estado
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
-    // To String  
-    @Override
-    public String toString() {
-        return "Cidade [id=" + id + ", nome=" + nome + ", estado=" + estado + "]";
-    }
 }

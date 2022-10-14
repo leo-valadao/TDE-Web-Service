@@ -6,7 +6,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 // Telefone - Tabela TELEFONE
+@Data
 @Entity(name = "Telefone")
 @Table(name = "TELEFONE")
 public class Telefone {
@@ -16,20 +19,4 @@ public class Telefone {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLIENTE_PK", nullable = false)
     private String numero;
-
-    // Getters e Setters
-    // Número
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    // To String
-    @Override
-    public String toString() {
-        return "Telefone [numero=" + numero + "]";
-    }
 }

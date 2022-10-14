@@ -21,7 +21,10 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.leonardo.tde.enumerable.TipoCliente;
 
+import lombok.Data;
+
 // Cliente - Tabela CLIENTE
+@Data
 @Entity(name = "Cliente")
 @Table(name = "CLIENTE")
 public class Cliente {
@@ -73,85 +76,4 @@ public class Cliente {
     // Pedidos - Chave Estrangeira - Pedido
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
     private List<Pedido> pedidos;
-
-    // Getters e Setters
-    // ID
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    // Nome
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    // E-Mail
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    // CPF ou CNPJ
-    public String getCpfOuCnpj() {
-        return cpfOuCnpj;
-    }
-
-    public void setCpfOuCnpj(String cpfOuCnpj) {
-        this.cpfOuCnpj = cpfOuCnpj;
-    }
-
-    // Tipo de Cliente
-    public TipoCliente getTipoCliente() {
-        return tipoCliente;
-    }
-
-    public void setTipoCliente(TipoCliente tipoCliente) {
-        this.tipoCliente = tipoCliente;
-    }
-
-    // Endereços
-    public List<Endereco> getEnderecos() {
-        return enderecos;
-    }
-
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
-    }
-
-    // Telefones
-    public List<Telefone> getTelefones() {
-        return telefones;
-    }
-
-    public void setTelefones(List<Telefone> telefones) {
-        this.telefones = telefones;
-    }
-
-    // Pedidos
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
-
-    // To String
-    @Override
-    public String toString() {
-        return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", cpfOuCnpj=" + cpfOuCnpj
-                + ", tipoCliente=" + tipoCliente + ", enderecos=" + enderecos + ", telefones=" + telefones
-                + ", pedidos=" + pedidos + "]";
-    }
 }
