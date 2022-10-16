@@ -37,5 +37,6 @@ public class Cidade {
     // Estado - Chave Estrangeira - Estado - Não Nulo
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ESTADO_FK", referencedColumnName = "ID_ESTADO_PK", nullable = false)
+    @NotNull
     private Estado estado;
 }

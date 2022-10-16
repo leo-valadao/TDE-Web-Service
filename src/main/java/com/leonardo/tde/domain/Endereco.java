@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -59,10 +60,12 @@ public class Endereco {
     // Cidade - Chave Estrangeira - Cidade - Não Nulo
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_CIDADE_FK", referencedColumnName = "ID_CIDADE_PK", nullable = false)
+    @NotNull
     private Cidade cidade;
 
     // Cliente - Chave Estrangeira - Cliente - Não Nulo
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLIENTE_PK", nullable = false)
+    @NotNull
     private Cliente cliente;
 }

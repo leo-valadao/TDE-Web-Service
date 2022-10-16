@@ -3,6 +3,7 @@ package com.leonardo.tde.domain;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -50,10 +51,9 @@ public class Cliente {
 
     // CPF ou CNPJ - String - 14 Caracteres - Não Nulo - Único
     @Column(name = "CPF_OU_CNPJ", length = 14, nullable = false, unique = true)
-    @Size.List(value = {
-            @Size(min = 11, max = 11, message = "O CPF do Cliente Deve Ter Apenas 11 Digitos!"),
-            @Size(min = 14, max = 14, message = "O CNPJ do Cliente Deve Ter Apenas 14 Digitos!") })
     @NotEmpty(message = "O CPF ou CNPJ do Cliente é Obrigatório!")
+    @Size(min = 11, max = 11, message = "O CPF do Cliente Deve Ter Apenas 11 Digitos!")
+    @Size(min = 14, max = 14, message = "O CNPJ do Cliente Deve Ter Apenas 14 Digitos!")
     @CPF(message = "CPF do Cliente Inválido!")
     @CNPJ(message = "CNPJ do Cliente Inválido!")
     private String cpfOuCnpj;
@@ -70,7 +70,7 @@ public class Cliente {
     private List<Endereco> enderecos;
 
     // Telefones - Chave Estrangeira - Telefone - Não Nulo
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "cliente")
+    @ElementCollection
     private List<Telefone> telefones;
 
     // Pedidos - Chave Estrangeira - Pedido
