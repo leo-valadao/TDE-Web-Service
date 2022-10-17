@@ -70,7 +70,7 @@ public class Cliente {
     private List<Endereco> enderecos;
 
     // Telefones - Chave Estrangeira - Telefone - Não Nulo
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     private List<Telefone> telefones;
 
     // Pedidos - Chave Estrangeira - Pedido

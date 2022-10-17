@@ -53,4 +53,10 @@ public class Pedido {
     @JoinColumn(name = "ID_ITEM_PEDIDO_FK", referencedColumnName = "ID_ITEM_PEDIDO_PK", nullable = false)
     @NotNull
     private ItemPedido itemPedido;
+
+    // Endereço de Entrega - Chave Estrangeira - Endereço - Não Nulo
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_ENDERECO_FK", referencedColumnName = "ID_ENDERECO_PK", nullable = false)
+    @NotNull
+    private Endereco enderecoDeEntrega;
 }
