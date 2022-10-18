@@ -8,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -31,7 +30,7 @@ public class Produto {
     // ID - Chave Primária - Serial - Long - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_PEDIDO_PK", nullable = false, unique = true)
+    @Column(name = "ID_PRODUTO_PK", nullable = false, unique = true)
     private Long id;
 
     // Nome - String - 50 Caracteres - Não Nulo - Único
@@ -50,14 +49,13 @@ public class Produto {
 
     // Relacionamentos
     // Itens do Pedido - Chave Estrangeira - ItemPedido - Não Nulo
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "ID_ITEM_PEDIDO_FK", referencedColumnName = "ID_ITEM_PEDIDO_PK", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "produto")
     @NotNull
-    private ItemPedido itemPedido;
+    private List<ItemPedido> itensPedido;
 
     // Categoria - Chave Estrangeira - Categoria - Não Nulo
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "produtos")
-    @JoinColumn(name = "ID_CATEGORIA_FK", referencedColumnName = "ID_CATEGORIA_PK", nullable = false)
+    @ManyToMany(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "ID_CATEGORIA_FK", referencedColumnName = "ID_CATEGORIA_PK", nullable = false)
     @NotNull
     private List<Categoria> categorias;
 }

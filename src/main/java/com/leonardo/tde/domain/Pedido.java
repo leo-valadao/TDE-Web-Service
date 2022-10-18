@@ -1,6 +1,7 @@
 package com.leonardo.tde.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,16 +44,15 @@ public class Pedido {
     private Cliente cliente;
 
     // Pagamento - Chave Estrangeira - Pagamento - Não Nulo
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_PAGAMENTO_FK", referencedColumnName = "ID_PAGAMENTO_PK", nullable = false)
-    @NotNull
-    private Pagamento pagamento;
+    // @OneToOne(fetch = FetchType.LAZY, optional = false)
+    // @JoinColumn(name = "ID_PAGAMENTO_FK", referencedColumnName = "ID_PAGAMENTO_PK", nullable = false)
+    // @NotNull
+    // private Pagamento pagamento;
 
     // Itens do Pedido - Chave Estrangeira - ItemPedido - Não Nulo
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "ID_ITEM_PEDIDO_FK", referencedColumnName = "ID_ITEM_PEDIDO_PK", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "pedido")
     @NotNull
-    private ItemPedido itemPedido;
+    private List<ItemPedido> itensPedido;
 
     // Endereço de Entrega - Chave Estrangeira - Endereço - Não Nulo
     @OneToOne(fetch = FetchType.LAZY, optional = false)

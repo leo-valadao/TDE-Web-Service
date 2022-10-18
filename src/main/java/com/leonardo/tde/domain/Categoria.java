@@ -8,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -27,7 +26,7 @@ public class Categoria {
     // ID - Chave Primária - Serial - Long - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CLIENTE_PK", nullable = false, unique = true)
+    @Column(name = "ID_CATEGORIA_PK", nullable = false, unique = true)
     private Long id;
 
     // Nome - String - 50 Caracteres - Não Nulo - Único
@@ -38,8 +37,8 @@ public class Categoria {
 
     // Relacionamentos
     // Categoria - Chave Estrangeira - Categoria - Não Nulo
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "produtos")
-    @JoinColumn(name = "ID_CATEGORIA_FK", referencedColumnName = "ID_CATEGORIA_PK", nullable = false)
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
+    //@JoinColumn(name = "ID_PRODUTO_FK", referencedColumnName = "ID_PRODUTO_PK", nullable = false)
     @NotNull
     private List<Produto> produtos;
 }

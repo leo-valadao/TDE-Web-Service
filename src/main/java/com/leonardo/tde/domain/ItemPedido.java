@@ -1,19 +1,19 @@
 package com.leonardo.tde.domain;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 import lombok.Data;
@@ -55,11 +55,14 @@ public class ItemPedido {
 
     // Relacionamentos
     // Pedido - Chave Estrangeira - Pedido
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "itemPedido")
-    private List<Pedido> pedidos;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_PEDIDO_FK", nullable = false, referencedColumnName = "ID_PEDIDO_PK")
+    @NotNull(message = "O Pedido é Obrigatório!")
+    private Pedido pedido;
 
     // Produto - Chave Estrangeira - Produto - Não Nulo
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "itemPedido")
-    private List<Produto> produtos;
-
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_PRODUTO_FK", nullable = false, referencedColumnName = "ID_PRODUTO_PK")
+    @NotNull(message = "O Produto é Obrigatório!")
+    private Produto produto;
 }
