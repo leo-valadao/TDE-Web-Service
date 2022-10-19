@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.leonardo.tde.enumerable.TipoCliente;
+import com.leonardo.tde.domain.enumerable.TipoCliente;
 
 import lombok.Data;
 

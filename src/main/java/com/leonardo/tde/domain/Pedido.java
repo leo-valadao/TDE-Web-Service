@@ -44,10 +44,10 @@ public class Pedido {
     private Cliente cliente;
 
     // Pagamento - Chave Estrangeira - Pagamento - Não Nulo
-    // @OneToOne(fetch = FetchType.LAZY, optional = false)
-    // @JoinColumn(name = "ID_PAGAMENTO_FK", referencedColumnName = "ID_PAGAMENTO_PK", nullable = false)
-    // @NotNull
-    // private Pagamento pagamento;
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ID_PAGAMENTO_FK", referencedColumnName = "ID_PAGAMENTO_PK", nullable = false)
+    @NotNull
+    private Pagamento pagamento;
 
     // Itens do Pedido - Chave Estrangeira - ItemPedido - Não Nulo
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "pedido")
