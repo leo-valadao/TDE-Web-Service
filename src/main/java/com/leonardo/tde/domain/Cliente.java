@@ -69,7 +69,7 @@ public class Cliente {
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "cliente")
     private List<Endereco> enderecos;
 
-    // Telefones - Chave Estrangeira - Telefone - Não Nulo
+    // Telefones - Chave Estrangeira - Telefone
     @ElementCollection(fetch = FetchType.LAZY)
     private List<Telefone> telefones;
 
