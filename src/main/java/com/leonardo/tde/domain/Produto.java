@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -55,7 +57,9 @@ public class Produto {
 
     // Categoria - Chave Estrangeira - Categoria - Não Nulo
     @ManyToMany(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "ID_CATEGORIA_FK", referencedColumnName = "ID_CATEGORIA_PK", nullable = false)
+    @JoinTable(name = "PRODUTO_CATEGORIA", 
+        joinColumns = @JoinColumn(name = "ID_CATEGORIA_FK"),
+        inverseJoinColumns = @JoinColumn(name = "ID_PRODUTO_FK"))
     @NotNull
     private List<Categoria> categorias;
 }
