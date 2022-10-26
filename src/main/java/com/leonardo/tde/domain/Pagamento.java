@@ -34,6 +34,7 @@ public class Pagamento {
 
     // Estado de Pagamento - Enumeravel - EstadoPagamento
     @ElementCollection(fetch = FetchType.LAZY)
+    // TODO: MODIFICAR PARA IGUAL AO ENUM DO TIPO CLIENTE
     private EstadoPagamento estado;
 
     // Relacionamentos
