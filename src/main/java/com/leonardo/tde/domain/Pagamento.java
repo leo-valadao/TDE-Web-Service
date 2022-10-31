@@ -1,5 +1,6 @@
 package com.leonardo.tde.domain;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -38,11 +39,9 @@ public class Pagamento {
     // Estado de Pagamento - Enumeravel - EstadoPagamento
     @Column(name = "ESTADO_PAGAMENTO", nullable = false)
     @Enumerated(EnumType.STRING)
-    @NotEmpty
-    @ElementCollection(fetch = FetchType.LAZY)
-    // TODO: MODIFICAR PARA IGUAL AO ENUM DO TIPO CLIENTE
+    @NotEmpty(message = "O Estado do Pagamento é Obrigatório!")
     private EstadoPagamento estado;
-
+    
     // Relacionamentos
     // Pagamento - Chave Estrangeira - Pagamento
     @OneToOne(fetch = FetchType.LAZY, optional = false)
