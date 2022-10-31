@@ -41,7 +41,7 @@ public class EstadoResource {
 
     // Montador de Modelo do Estado
     // @Autowired
-    private EstadoModelAssembler estadoModelAssembler;
+    private EstadoModelAssembler estadoModelAssembler = new EstadoModelAssembler();
 
     // API's
     // Obters Todos os Estados

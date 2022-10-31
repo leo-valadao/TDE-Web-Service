@@ -41,7 +41,7 @@ public class CidadeResource {
 
     // Montador de Modelo da Cidade
     // @Autowired
-    private CidadeModelAssembler cidadeModelAssembler;
+    private CidadeModelAssembler cidadeModelAssembler = new CidadeModelAssembler();
 
     // API's
     // Obter Todas as Cidades

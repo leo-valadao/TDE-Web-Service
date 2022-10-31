@@ -31,13 +31,13 @@ public class Cidade {
     // Nome - String - 50 Caracteres - Não Nulo - Único
     @Column(name = "NOME", length = 50, nullable = false, unique = true)
     @Size(max = 50, message = "O Nome da Cidade Deve Conter no Máximo 50 Caracteres!")
-    @NotEmpty
+    @NotEmpty(message = "O Nome da Cidade é Obrigatório!")
     private String nome;
 
     // Relacionamentos
     // Estado - Chave Estrangeira - Estado - Não Nulo
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_ESTADO_FK", referencedColumnName = "ID_ESTADO_PK", nullable = false)
-    @NotNull
+    @JoinColumn(name = "ID_ESTADO_FK", referencedColumnName = "ID_ESTADO_PK")//, nullable = false)
+    @NotNull(message = "O Estado é Obrigatório!")
     private Estado estado;
 }

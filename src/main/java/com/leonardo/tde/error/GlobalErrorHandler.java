@@ -31,7 +31,7 @@ public class GlobalErrorHandler {
             listaErros.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
 
-        Error error = new Error(HttpStatus.BAD_REQUEST.value(), "Cliente inválido!",
+        Error error = new Error(HttpStatus.BAD_REQUEST.value(), "Requisição Inválida!",
                 request.getRequestURI());
 
         error.setHashMap(listaErros);

@@ -31,7 +31,7 @@ public class Estado {
     // Nome - String - 50 Caracteres - Não Nulo - Único
     @Column(name = "NOME", length = 50, nullable = false, unique = true)
     @Size(max = 50, message = "O Nome do Estado Deve Conter no Máximo 50 Caracteres!")
-    @NotEmpty
+    @NotEmpty(message = "O Nome do Estado é Obrigatório!")
     private String nome;
 
     // Relacionamentos
