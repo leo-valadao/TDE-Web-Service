@@ -40,7 +40,7 @@ public class ClienteResource {
     private ClienteService clienteService;
 
     // Montador de Modelo do Cliente
-    @Autowired
+    // @Autowired
     private ClienteModelAssembler clienteModelAssembler;
 
     // API's

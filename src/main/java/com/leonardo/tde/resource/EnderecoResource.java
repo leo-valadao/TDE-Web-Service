@@ -40,7 +40,7 @@ public class EnderecoResource {
     private EnderecoService enderecoService;
 
     // Montador de Modelo do Endereco
-    @Autowired
+    // @Autowired
     private EnderecoModelAssembler enderecoModelAssembler;
 
     // API's

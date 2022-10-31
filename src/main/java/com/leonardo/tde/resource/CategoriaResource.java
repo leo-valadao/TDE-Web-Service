@@ -40,7 +40,7 @@ public class CategoriaResource {
     private CategoriaService categoriaService;
 
     // Montador de Modelo da Categoria
-    @Autowired
+    //@Autowired
     private CategoriaModelAssembler categoriaModelAssembler;
 
     // API's

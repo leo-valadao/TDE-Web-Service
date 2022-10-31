@@ -40,7 +40,7 @@ public class CidadeResource {
     private CidadeService cidadeService;
 
     // Montador de Modelo da Cidade
-    @Autowired
+    // @Autowired
     private CidadeModelAssembler cidadeModelAssembler;
 
     // API's
