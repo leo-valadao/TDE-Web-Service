@@ -1,8 +1,6 @@
 package com.leonardo.tde.domain;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,7 +13,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.leonardo.tde.enumerable.EstadoPagamento;
@@ -26,20 +23,19 @@ import lombok.Data;
 @Data
 @Entity(name = "Pagamento")
 @Table(name = "PAGAMENTO")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Pagamento {
 
     // Atributos
     // ID - Chave Primária - Serial - Integer - Não Nulo - Único
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_PAGAMENTO_PK", nullable = false, unique = true)
     private Integer id;
 
     // Estado de Pagamento - Enumeravel - EstadoPagamento
     @Column(name = "ESTADO_PAGAMENTO", nullable = false)
     @Enumerated(EnumType.STRING)
-    @NotEmpty(message = "O Estado do Pagamento é Obrigatório!")
     private EstadoPagamento estado;
     
     // Relacionamentos

@@ -19,8 +19,8 @@ public class CidadeService {
     private CidadeRepository cidadeRepository;
 
     // Serviço do Estado
-    // @Autowired
-    // private EstadoService estadoService;
+    @Autowired
+    private EstadoService estadoService;
 
     // Métodos
     // Buscar Todas as Cidades
@@ -58,21 +58,21 @@ public class CidadeService {
     }
 
     // Atualizar Estado da Cidade
-    // public Cidade atualizarEstadoDaCidade(Integer id, Estado estado) {
-    //     if (cidadeRepository.existsById(id)) {
-    //         Cidade cidade = cidadeRepository.findById(id).get();
-    //         Estado oldEstado = cidade.getEstado();
+    public Cidade atualizarEstadoDaCidade(Integer id, Estado estado) {
+        if (cidadeRepository.existsById(id)) {
+            Cidade cidade = cidadeRepository.findById(id).get();
+            Estado oldEstado = cidade.getEstado();
 
-    //         cidade.setEstado(estado);
-    //         this.salvarCidade(cidade);
+            cidade.setEstado(estado);
+            this.salvarCidade(cidade);
 
-    //         if (oldEstado != null) {
-    //             this.estadoService.excluirEstado(estado.getId());
-    //         }
+            if (oldEstado != null) {
+                this.estadoService.excluirEstado(estado.getId());
+            }
 
-    //         return cidade;
-    //     } else {
-    //         throw new NotFoundException("Cidade Não Encontrada! ID: " + id);
-    //     }
-    // }
+            return cidade;
+        } else {
+            throw new NotFoundException("Cidade Não Encontrada! ID: " + id);
+        }
+    }
 }

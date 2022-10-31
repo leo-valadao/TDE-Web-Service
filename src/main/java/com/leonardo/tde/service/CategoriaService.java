@@ -19,8 +19,8 @@ public class CategoriaService {
     private CategoriaRepository categoriaRepository;
 
     // Serviço do Produto
-    // @Autowired
-    // private ProdutoService produtoService;
+    @Autowired
+    private ProdutoService produtoService;
 
     // Métodos
     // Buscar Todas os Categorias
@@ -58,23 +58,23 @@ public class CategoriaService {
     }
 
     // Atualizar Produtos da Categoria
-    // public Categoria atualizarProdutosDoCategorias(Integer id, List<Produto> produtos) {
-    //     if (categoriaRepository.existsById(id)) {
-    //         Categoria categoria = categoriaRepository.findById(id).get();
-    //         List<Produto> oldProdutos = categoria.getProdutos();
+    public Categoria atualizarProdutosDaCategoria(Integer id, List<Produto> produtos) {
+        if (categoriaRepository.existsById(id)) {
+            Categoria categoria = categoriaRepository.findById(id).get();
+            List<Produto> oldProdutos = categoria.getProdutos();
 
-    //         categoria.setProdutos(produtos);
-    //         this.salvarCategoria(categoria);
+            categoria.setProdutos(produtos);
+            this.salvarCategoria(categoria);
 
-    //         if (oldProdutos != null) {
-    //             for (Produto produto : oldProdutos) {
-    //                 this.produtoService.excluirProduto(produto.getId());
-    //             }
-    //         }
+            if (oldProdutos != null) {
+                for (Produto produto : oldProdutos) {
+                    this.produtoService.excluirProduto(produto.getId());
+                }
+            }
 
-    //         return categoria;
-    //     } else {
-    //         throw new NotFoundException("Categoria Não Encontrada! ID: " + id);
-    //     }
-    // }
+            return categoria;
+        } else {
+            throw new NotFoundException("Categoria Não Encontrada! ID: " + id);
+        }
+    }
 }

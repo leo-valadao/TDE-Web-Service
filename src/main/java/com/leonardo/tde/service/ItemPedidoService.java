@@ -20,12 +20,12 @@ public class ItemPedidoService {
     private ItemPedidoRepository itemPedidoRepository;
 
     // Serviço do Produto
-    // @Autowired
-    // private ProdutoService produtoService;
+    @Autowired
+    private ProdutoService produtoService;
 
     // Serviço do Pedido
-    // @Autowired
-    // private PedidoService pedidoService;
+    @Autowired
+    private PedidoService pedidoService;
 
     // Métodos
     // Buscar Todos os Item Pedidos
@@ -63,40 +63,40 @@ public class ItemPedidoService {
     }
 
     // Atualizar Produto do Item Pedido
-    // public ItemPedido atualizarProdutoDoItemPedido(Integer id, Produto produto) {
-    //     if (itemPedidoRepository.existsById(id)) {
-    //         ItemPedido itemPedido = itemPedidoRepository.findById(id).get();
-    //         Produto oldProduto = itemPedido.getProduto();
+    public ItemPedido atualizarProdutoDoItemPedido(Integer id, Produto produto) {
+        if (itemPedidoRepository.existsById(id)) {
+            ItemPedido itemPedido = itemPedidoRepository.findById(id).get();
+            Produto oldProduto = itemPedido.getProduto();
 
-    //         itemPedido.setProduto(produto);
-    //         this.salvarItemPedido(itemPedido);
+            itemPedido.setProduto(produto);
+            this.salvarItemPedido(itemPedido);
 
-    //         if (oldProduto != null) {
-    //             this.produtoService.excluirProduto(produto.getId());
-    //         }
+            if (oldProduto != null) {
+                this.produtoService.excluirProduto(produto.getId());
+            }
 
-    //         return itemPedido;
-    //     } else {
-    //         throw new NotFoundException("Produto do Item do Pedido Não Encontrado! ID: " + id);
-    //     }
-    // }
+            return itemPedido;
+        } else {
+            throw new NotFoundException("Produto do Item do Pedido Não Encontrado! ID: " + id);
+        }
+    }
 
     // Atualizar Pedido do Item Pedido
-    // public ItemPedido atualizarPedidoDoItemPedido(Integer id, Pedido pedido) {
-    //     if (itemPedidoRepository.existsById(id)) {
-    //         ItemPedido itemPedido = itemPedidoRepository.findById(id).get();
-    //         Pedido oldPedido = itemPedido.getPedido();
+    public ItemPedido atualizarPedidoDoItemPedido(Integer id, Pedido pedido) {
+        if (itemPedidoRepository.existsById(id)) {
+            ItemPedido itemPedido = itemPedidoRepository.findById(id).get();
+            Pedido oldPedido = itemPedido.getPedido();
 
-    //         itemPedido.setPedido(pedido);
-    //         this.salvarItemPedido(itemPedido);
+            itemPedido.setPedido(pedido);
+            this.salvarItemPedido(itemPedido);
 
-    //         if (oldPedido != null) {
-    //             this.pedidoService.excluirPedido(pedido.getId());
-    //         }
+            if (oldPedido != null) {
+                this.pedidoService.excluirPedido(pedido.getId());
+            }
 
-    //         return itemPedido;
-    //     } else {
-    //         throw new NotFoundException("Pedidos do Item Pedido Não Encontrado! ID: " + id);
-    //     }
-    // }
+            return itemPedido;
+        } else {
+            throw new NotFoundException("Pedidos do Item Pedido Não Encontrado! ID: " + id);
+        }
+    }
 }

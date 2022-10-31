@@ -19,8 +19,8 @@ public class EnderecoService {
     private EnderecoRepository enderecoRepository;
 
     // Serviço do Cliente
-    // @Autowired
-    // private ClienteService clienteService;
+    @Autowired
+    private ClienteService clienteService;
 
     // Métodos
     // Buscar Todos os Endereços
@@ -58,21 +58,21 @@ public class EnderecoService {
     }
 
     // Atualizar Cliente do Endereco
-    // public Endereco atualizarClienteDoEndereco(Integer id, Cliente cliente) {
-    //     if (enderecoRepository.existsById(id)) {
-    //         Endereco endereco = enderecoRepository.findById(id).get();
-    //         Cliente oldCliente = endereco.getCliente();
+    public Endereco atualizarClienteDoEndereco(Integer id, Cliente cliente) {
+        if (enderecoRepository.existsById(id)) {
+            Endereco endereco = enderecoRepository.findById(id).get();
+            Cliente oldCliente = endereco.getCliente();
 
-    //         endereco.setCliente(cliente);
-    //         this.salvarEndereco(endereco);
+            endereco.setCliente(cliente);
+            this.salvarEndereco(endereco);
 
-    //         if (oldCliente != null) {
-    //             this.clienteService.excluirCliente(cliente.getId());
-    //         }
+            if (oldCliente != null) {
+                this.clienteService.excluirCliente(cliente.getId());
+            }
 
-    //         return endereco;
-    //     } else {
-    //         throw new NotFoundException("Endereco Não Encontrado! ID: " + id);
-    //     }
-    // }
+            return endereco;
+        } else {
+            throw new NotFoundException("Endereco Não Encontrado! ID: " + id);
+        }
+    }
 }
