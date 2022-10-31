@@ -1,6 +1,7 @@
 package com.leonardo.tde.domain;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -38,6 +39,8 @@ public class Pagamento {
     @Column(name = "ESTADO_PAGAMENTO", nullable = false)
     @Enumerated(EnumType.STRING)
     @NotEmpty
+    @ElementCollection(fetch = FetchType.LAZY)
+    // TODO: MODIFICAR PARA IGUAL AO ENUM DO TIPO CLIENTE
     private EstadoPagamento estado;
 
     // Relacionamentos

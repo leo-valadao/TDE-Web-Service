@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -38,8 +40,8 @@ public class Categoria {
     // Relacionamentos
     // Categoria - Chave Estrangeira - Categoria - Não Nulo
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
-    // @JoinColumn(name = "ID_PRODUTO_FK", referencedColumnName = "ID_PRODUTO_PK",
-    // nullable = false)
+    @JoinColumn(name = "ID_PRODUTO_FK", referencedColumnName = "ID_PRODUTO_PK",
+    nullable = false)
     @NotNull
     private List<Produto> produtos;
 }

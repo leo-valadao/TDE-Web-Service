@@ -1,7 +1,9 @@
 package com.leonardo.tde.domain;
 
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -71,7 +73,8 @@ public class Cliente {
 
     // Telefones - Chave Estrangeira - Telefone
     @ElementCollection(fetch = FetchType.LAZY)
-    private List<Telefone> telefones;
+    @CollectionTable(name = "TELEFONE")
+    private Set<Telefone> telefones;
 
     // Pedidos - Chave Estrangeira - Pedido
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
