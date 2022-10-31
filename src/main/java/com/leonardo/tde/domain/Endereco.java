@@ -22,11 +22,11 @@ import lombok.Data;
 public class Endereco {
 
     // Atributos
-    // ID - Chave Primária - Serial - Long - Não Nulo - Único
+    // ID - Chave Primária - Serial - Integer - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ENDERECO_PK", nullable = false, unique = true)
-    private Long id;
+    private Integer id;
 
     // Logadouro - String - 100 Caracteres - Não Nulo
     @Column(name = "LOGADOURO", length = 100, nullable = false)

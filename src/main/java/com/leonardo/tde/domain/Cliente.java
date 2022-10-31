@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.leonardo.tde.domain.enumerable.TipoCliente;
+import com.leonardo.tde.enumerable.TipoCliente;
 
 import lombok.Data;
 
@@ -31,11 +31,11 @@ import lombok.Data;
 public class Cliente {
 
     // Atributos
-    // ID - Chave Primária - Serial - Long - Não Nulo - Único
+    // ID - Chave Primária - Serial - Integer - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CLIENTE_PK", nullable = false, unique = true)
-    private Long id;
+    private Integer id;
 
     // Nome - String - 50 Caracteres - Não Nulo - Único
     @Column(name = "NOME", length = 50, nullable = false, unique = true)

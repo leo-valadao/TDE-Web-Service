@@ -25,11 +25,11 @@ import lombok.Data;
 public class ItemPedido {
 
     // Atributos
-    // ID - Chave Primária - Serial - Long - Não Nulo - Único
+    // ID - Chave Primária - Serial - Integer - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ITEM_PEDIDO_PK", nullable = false, unique = true)
-    private Long id;
+    private Integer id;
 
     // Desconto - Double(3,2)
     @Column(name = "DESCONTO", precision = 1, scale = 2)
@@ -45,7 +45,7 @@ public class ItemPedido {
     @NotEmpty(message = "A Quantidade é Obrigatória!")
     private Integer quantidade;
 
-    // Preço dos Itens - Double(1000000,2) - Não Nulo   
+    // Preço dos Itens - Double(1000000,2) - Não Nulo
     @Column(name = "PRECO_ITENS", precision = 1, scale = 2)
     @Positive(message = "O Preço Deve Ser Positivo!")
     @Digits(integer = 1000000, fraction = 2, message = "O Preço Deve Ser Maior Que 0!")

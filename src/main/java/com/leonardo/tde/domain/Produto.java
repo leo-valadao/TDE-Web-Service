@@ -27,11 +27,11 @@ import lombok.Data;
 public class Produto {
 
     // Atributos
-    // ID - Chave Primária - Serial - Long - Não Nulo - Único
+    // ID - Chave Primária - Serial - Integer - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PRODUTO_PK", nullable = false, unique = true)
-    private Long id;
+    private Integer id;
 
     // Nome - String - 50 Caracteres - Não Nulo - Único
     @Column(name = "NOME", length = 50, nullable = false, unique = true)
@@ -55,7 +55,8 @@ public class Produto {
 
     // Categoria - Chave Estrangeira - Categoria - Não Nulo
     @ManyToMany(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "ID_CATEGORIA_FK", referencedColumnName = "ID_CATEGORIA_PK", nullable = false)
+    // @JoinColumn(name = "ID_CATEGORIA_FK", referencedColumnName =
+    // "ID_CATEGORIA_PK", nullable = false)
     @NotNull
     private List<Categoria> categorias;
 }

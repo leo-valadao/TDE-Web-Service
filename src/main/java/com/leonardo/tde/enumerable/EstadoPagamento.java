@@ -1,4 +1,4 @@
-package com.leonardo.tde.domain.enumerable;
+package com.leonardo.tde.enumerable;
 
 public enum EstadoPagamento {
 

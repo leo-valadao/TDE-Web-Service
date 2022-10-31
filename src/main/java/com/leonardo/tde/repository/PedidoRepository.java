@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.leonardo.tde.domain.Pedido;
 
 @Repository
-public interface PedidoRepository extends JpaRepository<Pedido, Long> {
+public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 }

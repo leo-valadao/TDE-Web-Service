@@ -25,11 +25,11 @@ import lombok.Data;
 public class Pedido {
 
     // Atributos
-    // ID - Chave Primária - Serial - Long - Não Nulo - Único
+    // ID - Chave Primária - Serial - Integer - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PEDIDO_PK", nullable = false, unique = true)
-    private Long id;
+    private Integer id;
 
     // Instante - Date - Não Nulo
     @Column(name = "INSTANTE", nullable = false)
