@@ -13,8 +13,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.leonardo.tde.enumerable.EstadoPagamento;
 
 import lombok.Data;
@@ -30,18 +30,18 @@ public class Pagamento {
     // ID - Chave Primária - Serial - Integer - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID_PAGAMENTO_PK", nullable = false, unique = true)
+    @Column(name = "ID_PAGAMENTO_PK", nullable = false)
     private Integer id;
 
     // Estado de Pagamento - Enumeravel - EstadoPagamento
     @Column(name = "ESTADO_PAGAMENTO", nullable = false)
     @Enumerated(EnumType.STRING)
     private EstadoPagamento estado;
-    
+
     // Relacionamentos
     // Pagamento - Chave Estrangeira - Pagamento
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ID_PEDIDO_FK", referencedColumnName = "ID_PEDIDO_PK", nullable = false)
-    @NotNull
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
+    @OneToOne(fetch = FetchType.LAZY) // , optional = false)
+    @JoinColumn(name = "ID_PEDIDO_FK", referencedColumnName = "ID_PEDIDO_PK") // , nullable = false)
     private Pedido pedido;
 }

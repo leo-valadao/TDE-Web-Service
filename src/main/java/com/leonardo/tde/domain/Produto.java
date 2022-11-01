@@ -20,6 +20,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 // Produto - Tabela PRODUTO
@@ -32,34 +34,32 @@ public class Produto {
     // ID - Chave Primária - Serial - Integer - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_PRODUTO_PK", nullable = false, unique = true)
+    @Column(name = "ID_PRODUTO_PK", nullable = false)
     private Integer id;
 
     // Nome - String - 50 Caracteres - Não Nulo - Único
-    @Column(name = "NOME", length = 50, nullable = false, unique = true)
+    @Column(name = "NOME", length = 50, nullable = false)
     @NotEmpty(message = "O Nome do Produto é Obrigatório!")
     @Size(max = 50, message = "O Nome do Produto Deve Conter no Máximo 50 Caracteres!")
     private String nome;
 
     // Preço do Produto - Double(1000000,2) - Não Nulo
     @Column(name = "PRECO", precision = 1, scale = 2)
+    @NotNull(message = "O Preço do Produto é Obrigatório!")
     @Positive(message = "O Preço Deve Ser Positivo!")
     @Digits(integer = 1000000, fraction = 2, message = "O Preço Deve Ser Maior Que 0!")
     @DecimalMin(inclusive = false, value = "0", message = "O Preço Deve Ser Maior Que Zero!")
-    @NotEmpty(message = "O Preço é Obrigatório!")
     private Double preco;
 
     // Relacionamentos
     // Itens do Pedido - Chave Estrangeira - ItemPedido - Não Nulo
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "produto")
-    @NotNull(message = "O(s) Item(ns) do Pedido(s) é(são) Obrigatório(s)!")
     private List<ItemPedido> itensPedido;
 
     // Categoria - Chave Estrangeira - Categoria - Não Nulo
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "PRODUTO_CATEGORIA", 
-        joinColumns = @JoinColumn(name = "ID_CATEGORIA_FK"),
-        inverseJoinColumns = @JoinColumn(name = "ID_PRODUTO_FK"))
+    @JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "ID_CATEGORIA_FK"), inverseJoinColumns = @JoinColumn(name = "ID_PRODUTO_FK"))
     @NotNull(message = "A(s) Categoria(s) do Produto é(são) Obrigatória(s)!")
     private List<Categoria> categorias;
 }

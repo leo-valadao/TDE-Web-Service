@@ -2,8 +2,10 @@ package com.leonardo.tde.enumerable;
 
 public enum EstadoPagamento {
 
-    APROVADO("Aprovado"), EM_ANALISE("Em Análise"), REPROVADO("Reprovado");
+    APROVADO(1, "Aprovado"), 
+    EM_ANALISE(2, "Em Análise"), 
+    REPROVADO(3, "Reprovado");
 
-    private EstadoPagamento(String tipo){
+    private EstadoPagamento(Integer codigo, String tipo){
     }
 }

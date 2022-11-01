@@ -11,8 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.UniqueElements;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
@@ -26,18 +29,18 @@ public class Categoria {
     // ID - Chave Primária - Serial - Integer - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CATEGORIA_PK", nullable = false, unique = true)
+    @Column(name = "ID_CATEGORIA_PK", nullable = false)
     private Integer id;
 
     // Nome - String - 50 Caracteres - Não Nulo - Único
-    @Column(name = "NOME", length = 50, nullable = false, unique = true)
+    @Column(name = "NOME", length = 50, nullable = false)
     @NotEmpty(message = "O Nome do Cliente é Obrigatório!")
     @Size(max = 50, message = "O Nome do Cliente Deve Conter no Máximo 50 Caracteres!")
     private String nome;
 
     // Relacionamentos
     // Categoria - Chave Estrangeira - Categoria - Não Nulo
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
-    @NotNull
     private List<Produto> produtos;
 }

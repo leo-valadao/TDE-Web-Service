@@ -58,23 +58,23 @@ public class PedidoService {
     }
 
     // Atualizar Item Pedido do Pedido
-    public Pedido atualizarItemPedidoDoPedido(Integer id, List<ItemPedido> itensPedido) {
-        if (pedidoRepository.existsById(id)) {
-            Pedido pedido = pedidoRepository.findById(id).get();
-            List<ItemPedido> oldItensPedido = pedido.getItensPedido();
+    // public Pedido atualizarItemPedidoDoPedido(Integer id, List<ItemPedido> itensPedido) {
+    //     if (pedidoRepository.existsById(id)) {
+    //         Pedido pedido = pedidoRepository.findById(id).get();
+    //         List<ItemPedido> oldItensPedido = pedido.getItensPedido();
 
-            pedido.setItensPedido(itensPedido);
-            this.salvarPedido(pedido);
+    //         pedido.setItensPedido(itensPedido);
+    //         this.salvarPedido(pedido);
 
-            if (oldItensPedido != null) {
-                for (ItemPedido itemPedido : oldItensPedido) {
-                    this.itensPedidoService.excluirItemPedido(itemPedido.getId());
-                }
-            }
+    //         if (oldItensPedido != null) {
+    //             for (ItemPedido itemPedido : oldItensPedido) {
+    //                 this.itensPedidoService.excluirItemPedido(itemPedido.getId());
+    //             }
+    //         }
 
-            return pedido;
-        } else {
-            throw new NotFoundException("Pedido Não Encontrado! ID: " + id);
-        }
-    }
+    //         return pedido;
+    //     } else {
+    //         throw new NotFoundException("Pedido Não Encontrado! ID: " + id);
+    //     }
+    // }
 }

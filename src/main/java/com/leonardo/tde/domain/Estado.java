@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 // Estado - Tabela ESTADO
@@ -25,17 +27,18 @@ public class Estado {
     // ID - Chave Primária - Serial - Integer - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ESTADO_PK", nullable = false, unique = true)
+    @Column(name = "ID_ESTADO_PK", nullable = false)
     private Integer id;
 
     // Nome - String - 50 Caracteres - Não Nulo - Único
-    @Column(name = "NOME", length = 50, nullable = false, unique = true)
+    @Column(name = "NOME", length = 50, nullable = false)
     @Size(max = 50, message = "O Nome do Estado Deve Conter no Máximo 50 Caracteres!")
     @NotEmpty(message = "O Nome do Estado é Obrigatório!")
     private String nome;
 
     // Relacionamentos
     // Cidades - Chave Estrangeira - Cidade - Não Nulo
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Cidade> cidades;
 }

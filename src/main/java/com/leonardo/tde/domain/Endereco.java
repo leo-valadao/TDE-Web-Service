@@ -13,6 +13,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 // Endereço - Tabela ENDERECO
@@ -25,7 +27,7 @@ public class Endereco {
     // ID - Chave Primária - Serial - Integer - Não Nulo - Único
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ENDERECO_PK", nullable = false, unique = true)
+    @Column(name = "ID_ENDERECO_PK", nullable = false)
     private Integer id;
 
     // Logadouro - String - 100 Caracteres - Não Nulo
@@ -58,12 +60,14 @@ public class Endereco {
 
     // Relacionamentos
     // Cidade - Chave Estrangeira - Cidade - Não Nulo
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_CIDADE_FK", referencedColumnName = "ID_CIDADE_PK", nullable = false)
     @NotNull(message = "A Cidade do Endereço é Obrigatório!")
     private Cidade cidade;
 
     // Cliente - Chave Estrangeira - Cliente - Não Nulo
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLIENTE_PK", nullable = false)
     @NotNull(message = "O Cliente do Endereço é Obrigatório!")

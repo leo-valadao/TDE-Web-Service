@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.leonardo.tde.domain.ItemPedido;
+import com.leonardo.tde.domain.ItemPedidoPK;
 import com.leonardo.tde.domain.Pedido;
 import com.leonardo.tde.domain.Produto;
 import com.leonardo.tde.error.NotFoundException;
@@ -34,7 +35,7 @@ public class ItemPedidoService {
     }
 
     // Buscar Item Pedido Por ID
-    public ItemPedido itemPedidoPorId(int id) {
+    public ItemPedido itemPedidoPorId(ItemPedidoPK id) {
         return itemPedidoRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Item Pedido Não Encontrado! ID: " + id));
     }
@@ -46,15 +47,15 @@ public class ItemPedidoService {
 
     // Atualizar Item Pedido
     public void atualizarItemPedido(ItemPedido itemPedido) {
-        if (itemPedidoRepository.existsById(itemPedido.getId())) {
+        if (itemPedidoRepository.existsById(itemPedido.getItemPedidoPK())) {
             itemPedidoRepository.saveAndFlush(itemPedido);
         } else {
-            throw new NotFoundException("Item Pedido Não Encontrado! ID: " + itemPedido.getId());
+            throw new NotFoundException("Item Pedido Não Encontrado! ID: " + itemPedido.getItemPedidoPK());
         }
     }
 
     // Excluir Item Pedido Por ID
-    public void excluirItemPedido(Integer id) {
+    public void excluirItemPedido(ItemPedidoPK id) {
         if (itemPedidoRepository.existsById(id)) {
             itemPedidoRepository.deleteById(id);
         } else {
@@ -63,7 +64,7 @@ public class ItemPedidoService {
     }
 
     // Atualizar Produto do Item Pedido
-    public ItemPedido atualizarProdutoDoItemPedido(Integer id, Produto produto) {
+    public ItemPedido atualizarProdutoDoItemPedido(ItemPedidoPK id, Produto produto) {
         if (itemPedidoRepository.existsById(id)) {
             ItemPedido itemPedido = itemPedidoRepository.findById(id).get();
             Produto oldProduto = itemPedido.getProduto();
@@ -82,7 +83,7 @@ public class ItemPedidoService {
     }
 
     // Atualizar Pedido do Item Pedido
-    public ItemPedido atualizarPedidoDoItemPedido(Integer id, Pedido pedido) {
+    public ItemPedido atualizarPedidoDoItemPedido(ItemPedidoPK id, Pedido pedido) {
         if (itemPedidoRepository.existsById(id)) {
             ItemPedido itemPedido = itemPedidoRepository.findById(id).get();
             Pedido oldPedido = itemPedido.getPedido();

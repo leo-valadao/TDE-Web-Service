@@ -1,13 +1,12 @@
 package com.leonardo.tde.domain;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -26,10 +25,13 @@ public class ItemPedido {
 
     // Atributos
     // ID - Chave Primária - Serial - Integer - Não Nulo - Único
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ITEM_PEDIDO_PK", nullable = false, unique = true)
-    private Integer id;
+    @EmbeddedId
+    private ItemPedidoPK itemPedidoPK;
+
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @Column(name = "ID_ITEM_PEDIDO_PK", nullable = false)
+    // private Integer id;
 
     // Desconto - Double(3,2)
     @Column(name = "DESCONTO", precision = 1, scale = 2)
@@ -50,18 +52,20 @@ public class ItemPedido {
     @Positive(message = "O Preço Deve Ser Positivo!")
     @Digits(integer = 1000000, fraction = 2, message = "O Preço Deve Ser Maior Que 0!")
     @DecimalMin(inclusive = false, value = "0", message = "O Preço Deve Ser Maior Que Zero!")
-    @NotEmpty(message = "O Preço é Obrigatório!")
+    @NotNull(message = "O Preço é Obrigatório!")
     private Double preco;
 
     // Relacionamentos
     // Pedido - Chave Estrangeira - Pedido
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @MapsId(value = "pedido")
     @JoinColumn(name = "ID_PEDIDO_FK", nullable = false, referencedColumnName = "ID_PEDIDO_PK")
     @NotNull(message = "O Pedido é Obrigatório!")
     private Pedido pedido;
 
     // Produto - Chave Estrangeira - Produto - Não Nulo
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @MapsId(value = "produto")
     @JoinColumn(name = "ID_PRODUTO_FK", nullable = false, referencedColumnName = "ID_PRODUTO_PK")
     @NotNull(message = "O Produto é Obrigatório!")
     private Produto produto;
