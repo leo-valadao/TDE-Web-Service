@@ -17,8 +17,8 @@ public class ProdutoModelAssembler implements RepresentationModelAssembler<Produ
         EntityModel<Produto> entityModelProduto = EntityModel.of(produto);
 
         entityModelProduto.add(linkTo(methodOn(ProdutoResource.class).obterProdutoPorId(produto.getId())).withSelfRel());
-        entityModelProduto.add(linkTo(methodOn(ProdutoResource.class).atualizarCategoriasDoProduto(produto.getId(), null)).withRel("categorias"));
         entityModelProduto.add(linkTo(methodOn(ProdutoResource.class).obterTodosProdutos()).withRel(IanaLinkRelations.COLLECTION));
+        // entityModelProduto.add(linkTo(methodOn(ProdutoResource.class).atualizarCategoriasDoProduto(produto.getId(), null)).withRel("categorias"));
 
         return entityModelProduto;
     }

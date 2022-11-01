@@ -41,7 +41,7 @@ public class ProdutoResource {
 
     // Montador de Modelo do Produto
     // @Autowired
-    private ProdutoModelAssembler produtoModelAssembler;
+    private ProdutoModelAssembler produtoModelAssembler = new ProdutoModelAssembler();
 
     // API's
     // Obters Todos os Produtos

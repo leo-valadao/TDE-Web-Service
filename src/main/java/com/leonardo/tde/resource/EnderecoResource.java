@@ -41,7 +41,7 @@ public class EnderecoResource {
 
     // Montador de Modelo do Endereco
     // @Autowired
-    private EnderecoModelAssembler enderecoModelAssembler;
+    private EnderecoModelAssembler enderecoModelAssembler = new EnderecoModelAssembler();
 
     // API's
     // Obter Todos os Enderecos

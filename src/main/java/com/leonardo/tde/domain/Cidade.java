@@ -37,7 +37,7 @@ public class Cidade {
     // Relacionamentos
     // Estado - Chave Estrangeira - Estado - Não Nulo
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_ESTADO_FK", referencedColumnName = "ID_ESTADO_PK")//, nullable = false)
-    @NotNull(message = "O Estado é Obrigatório!")
+    @JoinColumn(name = "ID_ESTADO_FK", referencedColumnName = "ID_ESTADO_PK", nullable = false)
+    @NotNull(message = "O Estado da Cidade é Obrigatório!")
     private Estado estado;
 }

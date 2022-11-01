@@ -52,7 +52,7 @@ public class Produto {
     // Relacionamentos
     // Itens do Pedido - Chave Estrangeira - ItemPedido - Não Nulo
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "produto")
-    @NotNull
+    @NotNull(message = "O(s) Item(ns) do Pedido(s) é(são) Obrigatório(s)!")
     private List<ItemPedido> itensPedido;
 
     // Categoria - Chave Estrangeira - Categoria - Não Nulo
@@ -60,6 +60,6 @@ public class Produto {
     @JoinTable(name = "PRODUTO_CATEGORIA", 
         joinColumns = @JoinColumn(name = "ID_CATEGORIA_FK"),
         inverseJoinColumns = @JoinColumn(name = "ID_PRODUTO_FK"))
-    @NotNull
+    @NotNull(message = "A(s) Categoria(s) do Produto é(são) Obrigatória(s)!")
     private List<Categoria> categorias;
 }

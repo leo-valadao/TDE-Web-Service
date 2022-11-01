@@ -17,8 +17,9 @@ public class ClienteModelAssembler implements RepresentationModelAssembler<Clien
         EntityModel<Cliente> entityModelCliente = EntityModel.of(cliente);
         
         entityModelCliente.add(linkTo(methodOn(ClienteResource.class).obterClientePorId(cliente.getId())).withSelfRel());
-        entityModelCliente.add(linkTo(methodOn(ClienteResource.class).atualizarEnderecosDoCliente(cliente.getId(),null)).withRel("endereços"));
         entityModelCliente.add(linkTo(methodOn(ClienteResource.class).obterTodosClientes()).withRel(IanaLinkRelations.COLLECTION));
+        // entityModelCliente.add(linkTo(methodOn(ClienteResource.class).atualizarEnderecosDoCliente(cliente.getId(),null)).withRel("endereços"));
+        // entityModelCliente.add(linkTo(methodOn(ClienteResource.class).atualizarEnderecosDoCliente(cliente.getId(),null)).withRel("pedidos"));
 
         return entityModelCliente;
     }

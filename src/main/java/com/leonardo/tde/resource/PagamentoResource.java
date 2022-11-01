@@ -39,7 +39,7 @@ public class PagamentoResource {
 
     // Montador de Modelo do Pagamento
     // @Autowired
-    private PagamentoModelAssembler pagamentoModelAssembler;
+    private PagamentoModelAssembler pagamentoModelAssembler = new PagamentoModelAssembler();
 
     // API's
     // Obters Todos os Pagamentos

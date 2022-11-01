@@ -17,8 +17,8 @@ public class EstadoModelAssembler implements RepresentationModelAssembler<Estado
         EntityModel<Estado> entityModelEstado = EntityModel.of(estado);
         
         entityModelEstado.add(linkTo(methodOn(EstadoResource.class).obterEstadoPorId(estado.getId())).withSelfRel());
-        entityModelEstado.add(linkTo(methodOn(EstadoResource.class).atualizarCidadesDoEstado(estado.getId(),null)).withRel("estado"));
         entityModelEstado.add(linkTo(methodOn(EstadoResource.class).obterTodosEstados()).withRel(IanaLinkRelations.COLLECTION));
+        // entityModelEstado.add(linkTo(methodOn(EstadoResource.class).atualizarCidadesDoEstado(estado.getId(),null)).withRel("estado"));
 
         return entityModelEstado;
     }  

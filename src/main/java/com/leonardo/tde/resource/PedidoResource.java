@@ -39,7 +39,7 @@ public class PedidoResource {
 
     // Montador de Modelo do Pedido
     // @Autowired
-    private PedidoModelAssembler pedidoModelAssembler;
+    private PedidoModelAssembler pedidoModelAssembler = new PedidoModelAssembler();
 
     // API's
     // Obters Todos os Pedidos
@@ -104,12 +104,13 @@ public class PedidoResource {
 
     // Atualizar os Produtos da Pedido
     // @PatchMapping("/{id}/produtos")
-    // public ResponseEntity<EntityModel<Pedido>> atualizarProdutosDoPedido(@PathVariable("id") Integer idPedido,
-    //         List<Produto> produtos) {
-    //     Pedido pedido = pedidoService.atualizarProdutosDoPedido(idPedido, produtos);
+    // public ResponseEntity<EntityModel<Pedido>>
+    // atualizarProdutosDoPedido(@PathVariable("id") Integer idPedido,
+    // List<Produto> produtos) {
+    // Pedido pedido = pedidoService.atualizarProdutosDoPedido(idPedido, produtos);
 
-    //     EntityModel<Pedido> entityModelPedido = pedidoModelAssembler.toModel(pedido);
+    // EntityModel<Pedido> entityModelPedido = pedidoModelAssembler.toModel(pedido);
 
-    //     return ResponseEntity.ok(entityModelPedido);
+    // return ResponseEntity.ok(entityModelPedido);
     // }
 }

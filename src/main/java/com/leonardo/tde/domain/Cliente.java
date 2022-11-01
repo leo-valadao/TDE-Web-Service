@@ -22,6 +22,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.leonardo.tde.domain.validations.PessoaFisica;
+import com.leonardo.tde.domain.validations.PessoaJuridica;
 import com.leonardo.tde.enumerable.TipoCliente;
 
 import lombok.Data;
@@ -54,16 +56,14 @@ public class Cliente {
     // CPF ou CNPJ - String - 14 Caracteres - Não Nulo - Único
     @Column(name = "CPF_OU_CNPJ", length = 14, nullable = false, unique = true)
     @NotEmpty(message = "O CPF ou CNPJ do Cliente é Obrigatório!")
-    @Size(min = 11, max = 11, message = "O CPF do Cliente Deve Ter Apenas 11 Digitos!")
-    @Size(min = 14, max = 14, message = "O CNPJ do Cliente Deve Ter Apenas 14 Digitos!")
-    @CPF(message = "CPF do Cliente Inválido!")
-    @CNPJ(message = "CNPJ do Cliente Inválido!")
+    @CPF(groups = PessoaFisica.class, message = "CPF do Cliente Inválido!")
+    @CNPJ(groups = PessoaJuridica.class, message = "CNPJ do Cliente Inválido!")
     private String cpfOuCnpj;
 
     // Tipo de Cliente - TipoCliente - Enum - Não Nulo
     @Column(name = "TIPO_CLIENTE", nullable = false)
     @Enumerated(EnumType.STRING)
-    @NotEmpty(message = "O Tipo do Cliente é Obrigatório!")
+    // @NotEmpty(message = "O Tipo do Cliente é Obrigatório!")
     private TipoCliente tipoCliente;
 
     // Relacionamentos

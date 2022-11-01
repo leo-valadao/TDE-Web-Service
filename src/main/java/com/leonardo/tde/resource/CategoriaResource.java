@@ -40,8 +40,8 @@ public class CategoriaResource {
     private CategoriaService categoriaService;
 
     // Montador de Modelo da Categoria
-    //@Autowired
-    private CategoriaModelAssembler categoriaModelAssembler;
+    // Autowired
+    private CategoriaModelAssembler categoriaModelAssembler = new CategoriaModelAssembler();
 
     // API's
     // Obter Todas as Categorias
@@ -79,7 +79,8 @@ public class CategoriaResource {
             HttpServletRequest request) {
         categoriaService.salvarCategoria(categoria);
 
-        URI uri = linkTo(methodOn(CategoriaResource.class).obterCategoriaPorId(categoria.getId())).withSelfRel().toUri();
+        URI uri = linkTo(methodOn(CategoriaResource.class).obterCategoriaPorId(categoria.getId())).withSelfRel()
+                .toUri();
         EntityModel<Categoria> entityModelCategoria = categoriaModelAssembler.toModel(categoria);
 
         return ResponseEntity.created(uri).body(entityModelCategoria);

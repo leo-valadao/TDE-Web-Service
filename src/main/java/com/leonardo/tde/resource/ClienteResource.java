@@ -41,7 +41,7 @@ public class ClienteResource {
 
     // Montador de Modelo do Cliente
     // @Autowired
-    private ClienteModelAssembler clienteModelAssembler;
+    private ClienteModelAssembler clienteModelAssembler = new ClienteModelAssembler();
 
     // API's
     // Obter Todos os Clientes

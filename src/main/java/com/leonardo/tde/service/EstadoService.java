@@ -50,7 +50,7 @@ public class EstadoService {
 
     // Excluir Estado Por ID
     public void excluirEstado(Integer id) {
-        if (estadoRepository.equals(id)) {
+        if (estadoRepository.existsById(id)) {
             estadoRepository.deleteById(id);
         } else {
             throw new NotFoundException("Estado Não Encontrado! ID: " + id);

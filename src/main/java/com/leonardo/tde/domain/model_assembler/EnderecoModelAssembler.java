@@ -17,8 +17,8 @@ public class EnderecoModelAssembler implements RepresentationModelAssembler<Ende
         EntityModel<Endereco> entityModelEndereco = EntityModel.of(endereco);
         
         entityModelEndereco.add(linkTo(methodOn(EnderecoResource.class).obterEnderecoPorId(endereco.getId())).withSelfRel());
-        entityModelEndereco.add(linkTo(methodOn(EnderecoResource.class).atualizarClienteDoEndereco(endereco.getId(),null)).withRel("endereços"));
         entityModelEndereco.add(linkTo(methodOn(EnderecoResource.class).obterTodosEnderecos()).withRel(IanaLinkRelations.COLLECTION));
+        // entityModelEndereco.add(linkTo(methodOn(EnderecoResource.class).atualizarClienteDoEndereco(endereco.getId(),null)).withRel("endereços"));
 
         return entityModelEndereco;
     }    

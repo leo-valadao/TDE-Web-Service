@@ -33,7 +33,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequestMapping("/api/v1/cidade")
 public class CidadeResource {
-    
+
     // Objetos
     // Serviço da Cidade
     @Autowired
@@ -67,7 +67,7 @@ public class CidadeResource {
     @GetMapping("{id}")
     public ResponseEntity<EntityModel<Cidade>> obterCidadePorId(@PathVariable("id") Integer id) {
         Cidade cidade = cidadeService.cidadePorId(id);
-        
+
         EntityModel<Cidade> entityModelCidade = cidadeModelAssembler.toModel(cidade);
 
         return ResponseEntity.ok(entityModelCidade);
@@ -75,7 +75,8 @@ public class CidadeResource {
 
     // Salvar a Cidade
     @PostMapping
-    public ResponseEntity<EntityModel<Cidade>> salvarCidade(@RequestBody @Valid Cidade cidade, HttpServletRequest request) {
+    public ResponseEntity<EntityModel<Cidade>> salvarCidade(@RequestBody @Valid Cidade cidade,
+            HttpServletRequest request) {
         cidadeService.salvarCidade(cidade);
 
         URI uri = linkTo(methodOn(CidadeResource.class).obterCidadePorId(cidade.getId())).withSelfRel().toUri();

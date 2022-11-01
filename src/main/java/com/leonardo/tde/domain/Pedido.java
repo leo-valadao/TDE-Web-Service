@@ -40,23 +40,23 @@ public class Pedido {
     // Cliente - Chave Estrangeira - Cliente - Não Nulo
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_CLIENTE_FK", referencedColumnName = "ID_CLIENTE_PK", nullable = false)
-    @NotNull
+    @NotNull(message = "O Cliente do Pedido é Obrigatório!")
     private Cliente cliente;
 
     // Pagamento - Chave Estrangeira - Pagamento - Não Nulo
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_PAGAMENTO_FK", referencedColumnName = "ID_PAGAMENTO_PK", nullable = false)
-    @NotNull
+    @NotNull(message = "O Pagamento do Pedido é Obrigatório!")
     private Pagamento pagamento;
 
     // Itens do Pedido - Chave Estrangeira - ItemPedido - Não Nulo
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "pedido")
-    @NotNull
+    @NotNull(message = "O(s) Item(ns) do Pedido é(são) Obrigatório(s)!")
     private List<ItemPedido> itensPedido;
 
     // Endereço de Entrega - Chave Estrangeira - Endereço - Não Nulo
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ID_ENDERECO_FK", referencedColumnName = "ID_ENDERECO_PK", nullable = false)
-    @NotNull
+    @NotNull(message = "O Endereço de Entrega do Pedido é Obrigatório!")
     private Endereco enderecoDeEntrega;
 }
